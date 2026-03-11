@@ -3,7 +3,8 @@
 # Lab02 - Sumador/Restador de 4 bits
 
 # Integrantes
-
+1). Cristian Camilo Cifuentes Rodriguez. 130005
+2). Pula Natalia Roa García. 137653
 
 # Informe
 
