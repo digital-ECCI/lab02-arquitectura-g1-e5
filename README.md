@@ -23,10 +23,11 @@ Indice:
 ### 1. Sumador/Restador
 
 #### 1.1 Descripción
-## Resumen
+
+
 Este documento presenta el diseño, implementación y validación de un circuito sumador/restador de 4 bits. El diseño se destaca por la optimización de hardware, ya que reutiliza la arquitectura de un sumador completo añadiendo compuertas lógicas XOR y una señal de control. Mediante la aplicación del teorema de complemento a 2, el circuito es capaz de transformar las operaciones de resta en sumas, permitiendo manejar números positivos y negativos en binario. El informe detalla la fundamentación teórica, describe la estructura del circuito a nivel de hardware y documenta las simulaciones realizadas para verificar su correcto funcionamiento antes de su implementación física.
 
-## Introducción
+
 En el diseño de sistemas digitales, realizar operaciones aritméticas con números negativos requiere de una representación eficiente que no implique duplicar el hardware para cada operación. Este laboratorio tiene como objetivo principal implementar un circuito restador utilizando la lógica de complemento a 2, lo cual nos permite reutilizar un sumador de 4 bits existente para realizar también operaciones de resta. 
 
 El uso del complemento a 2 simplifica el diseño del circuito al convertir la resta $A - B$ en una suma equivalente $A + (\sim B + 1)$, donde $\sim B$ es la inversión bit a bit. A través de este laboratorio, aprenderemos a adaptar arquitecturas base mediante señales de control y a verificar y validar rigurosamente el diseño en un entorno de simulación, un paso crucial para identificar y corregir errores de lógica antes de proceder con el despliegue en hardware real.
@@ -89,3 +90,6 @@ Al interpretar el valor obtenido ($1100_2$) bajo la norma de complemento a 2, se
 * **Interpretación de resultados y signo:** Se verificó de forma concluyente que el acarreo de salida ($Co$) del último bloque sumador actúa eficazmente como indicador de estado para la operación. El diseño respondió adecuadamente a la teoría, confirmando que cuando $Co = 1$ en una resta, el resultado es positivo; mientras que si $Co = 0$, el circuito entrega correctamente un resultado negativo codificado en formato de complemento a 2.
 
 ## Referencias
+
+**Formato IEEE:**
+* [1] digital-ECCI, "Arquitectura-de-procesadores - Laboratorio 2: Sumador/Restador", GitHub, Repositorio oficial del curso. [En línea]. Disponible en: https://github.com/digital-ECCI/Arquitectura-de-procesadores/blob/main/labs/02_lab02/README.md
