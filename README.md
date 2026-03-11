@@ -60,11 +60,28 @@ Para llevar esta lógica al circuito, se utiliza una señal de control denominad
 * **Modo Resta ($Sel = 1$):** La señal en alto hace que las compuertas XOR actúen como inversores lógicos, obteniendo el complemento a 1 del operando $B$ (Paso 1). Simultáneamente, la señal $Sel = 1$ ingresa como acarreo inicial ($Cin$) en el primer bloque sumador, sumando un 1 al número invertido (Paso 2). De esta forma, se consolida el complemento a 2 y el bloque sumador principal ejecuta la operación $A + (\sim B + 1)$, es decir, $A - B$.
 
 Adicionalmente, el bit de acarreo de salida final ($Co$) sirve como indicador del signo del resultado en operaciones de resta: si $Co = 1$, el resultado es positivo; si $Co = 0$, el resultado es negativo y se encuentra expresado en complemento a 2.
-#### 1.2 Diagrama
+#### 1.2 Imagen Simulacíon:
 
 
 ## Evidencias de implementación
 
+<video width="360" height="360" controls>
+  <source src="./sumador_restador.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento <code>video</code>.
+</video>
+
+Para validar el funcionamiento del diseño en hardware, se implementó el circuito sumador/restador de 4 bits en una tarjeta FPGA. En el video de evidencia adjunto, se realiza una prueba de escritorio ejecutando una operación de resta.
+
+**Caso de prueba documentado:**
+Se configuró el circuito para resolver la operación $3 - 7$.
+* **Minuendo (A):** Se ingresó el valor $3$, configurando los interruptores en $0011_2$.
+* **Sustraendo (B):** Se ingresó el valor $7$, configurando los interruptores en $0111_2$.
+* **Selector (Sel):** Se activó en $1$ para habilitar el modo resta (complemento a 2).
+
+**Análisis del resultado:**
+Los LEDs de salida arrojaron el valor $1100_2$. Adicionalmente, se evidenció que el LED correspondiente al acarreo de salida ($Co$) permaneció apagado ($Co = 0$), lo cual es el indicador de que el resultado de la operación es negativo. 
+
+Al interpretar el valor obtenido ($1100_2$) bajo la norma de complemento a 2, se confirma que este binario corresponde al número decimal $-4$. Esto demuestra que la tarjeta FPGA calculó exitosamente la operación, ya que $3 - 7 = -4$.
 
 ## Conclusiones
 **Optimización de hardware:** La implementación del circuito sumador/restador de 4 bits demostró de manera exitosa la viabilidad y eficiencia de reutilizar componentes lógicos en el diseño de arquitecturas digitales. Mediante la integración de compuertas XOR y una única señal de control ($Sel$), se logró expandir la funcionalidad de un bloque sumador estándar para incluir operaciones de resta, evitando la necesidad de construir un circuito aritmético independiente y optimizando los recursos del sistema.
