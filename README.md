@@ -4,7 +4,8 @@
 
 # Integrantes
 1). Cristian Camilo Cifuentes Rodriguez. 130005
-2). Pula Natalia Roa García. 137653
+
+2). Paula Natalia Roa García. 137653
 
 # Informe
 
@@ -30,7 +31,9 @@ En el diseño de sistemas digitales, realizar operaciones aritméticas con núme
 
 El uso del complemento a 2 simplifica el diseño del circuito al convertir la resta $A - B$ en una suma equivalente $A + (\sim B + 1)$, donde $\sim B$ es la inversión bit a bit. A través de este laboratorio, aprenderemos a adaptar arquitecturas base mediante señales de control y a verificar y validar rigurosamente el diseño en un entorno de simulación, un paso crucial para identificar y corregir errores de lógica antes de proceder con el despliegue en hardware real.
 #### 1.2 Diagramas
+A continuación se muestra el circuito del complemento a 2:
 
+![alt text](image.png)
 
 ## Simulaciones 
 
