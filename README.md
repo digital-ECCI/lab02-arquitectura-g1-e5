@@ -16,7 +16,7 @@ Indice:
 3. [Evidencias de implementación](#evidencias-de-implementación)
 4. [Preguntas](#preguntas)
 5. [Conclusiones](#conclusiones)
-6. [Referencias](#referencias)
+
 
 ## Documentación del diseño implementado
 
@@ -35,6 +35,8 @@ El uso del complemento a 2 simplifica el diseño del circuito al convertir la re
 A continuación se muestra el circuito del complemento a 2:
 
 ![alt text](image.png)
+
+![rlt](image-2.png)
 
 ## Simulaciones 
 
@@ -62,7 +64,151 @@ Para llevar esta lógica al circuito, se utiliza una señal de control denominad
 
 Adicionalmente, el bit de acarreo de salida final ($Co$) sirve como indicador del signo del resultado en operaciones de resta: si $Co = 1$, el resultado es positivo; si $Co = 0$, el resultado es negativo y se encuentra expresado en complemento a 2.
 #### 1.2 Imagen Simulacíon:
+![sumadorrestador](image-1.png)
+### 3. EXplicación codigo 
 
+Módulo 1: Sumador Completo de 1 Bit (sumador_un_bit)
+Este primer código describe el hardware a nivel de compuertas lógicas (nivel estructural) de un sumador completo de un solo bit.
+
+Define el inicio del módulo y su nombre.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L1)
+
+Declara el primer bit a sumar
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L2)
+Declara el segundo bit a sumar
+
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L3)
+
+Declara el acarreo de entrada (Carry in), proveniente de una suma anterior.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L4)
+
+Declara la salida del resultado de la suma.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L5)
+
+Declara el acarreo de salida (Carry out), que se generará si la suma excede la capacidad de 1 bit
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L6)
+
+Cierra la declaración de los puertos.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L7)
+
+Declaración de conexiones internas (Cables)
+
+Cable para almacenar la primera parte de la suma (A ⊕ B).
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L9)
+
+Cable intermedio para el cálculo del acarreo final.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L10)
+
+Otro cable intermedio para el cálculo del acarreo final.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L11)
+
+Instancia una compuerta XOR. Las entradas son A y B, y su salida se conecta al cable x_ab.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L13)
+
+
+Instancia una segunda compuerta XOR para obtener la suma final. Sus entradas son x_ab y Ci, y su salida es el puerto So.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L14)
+
+Instancia una compuerta AND. Sus entradas son x_ab y Ci, saliendo por cout_t.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L15)
+
+Instancia otra compuerta AND. Sus entradas son A y B, saliendo por a_ab.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L16)
+
+Instancia una compuerta OR para determinar si hubo acarreo en alguna de las etapas anteriores. Sus entradas son cout_t y a_ab, y su salida final es el puerto Co.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L17)
+
+
+Indica el final del módulo.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_un_bit.v#L19)
+
+* **Módulo 2: Sumador/Restador de 4 Bits (sumador_restador_4_bits):**
+Este código es de un nivel de abstracción superior. Utiliza el sumador de 1 bit que creaste arriba para replicarlo 4 veces y, mediante el método aritmético de Complemento a 2, logra sumar o restar dependiendo de un selector.
+
+
+Es una directiva del compilador que inserta el código del módulo anterior aquí para poder usarlo.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L2)
+
+Inicia la declaración del módulo principal.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L4)
+
+
+Entrada A (4 bits)
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L5)
+
+4 cables para el operando B.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L6)
+
+Bit que define la operación (0 = Suma, 1 = Resta).
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L7)
+
+El resultado de 4 bits de la operación.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L8)
+
+Bit extra que funciona como acarreo o indicador de signo.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L9)
+
+Cierra la declaración.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L10)
+
+
+***variables internas**
+
+
+entradade 5 cables para propagar los acarreos. Empieza en el acarreo de entrada inicial (c[0]) y termina en el acarreo final (c[4]).
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L12)
+
+entrada de 4 cables que contendrá el valor de B modificado (ya sea B normal o B invertido).
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L13)
+
+Asigna el valor del selector al acarreo de entrada del primer sumador. Si es resta (Sel=1), inyecta un 1, cumpliendo el paso de "sumar 1" del complemento a 2.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L17)
+
+Declara una variable especial de tiempo de compilación para iterar.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L20)
+
+Abre el bloque de generación de hardware.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L21)
+
+Inicia un bucle que se repetirá 4 veces (de la posición 0 a la 3). El nombre : etapa es una etiqueta obligatoria para el bloque.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L22)
+
+
+Esta es la clave de la inversión. Usa una compuerta XOR. Si Sel es 0, B no cambia. Si Sel es 1, invierte el bit de B (cumpliendo el paso de "invertir los bits" del complemento a 2).
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L25)
+
+Llama al módulo que definimos al principio (se crea un "clon" llamado inst).
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L28)
+
+Conecta el bit actual de A a la entrada A del sumador.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L29)
+
+Conecta el bit modificado de B a la entrada B del sumador.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L30)
+
+Conecta el acarreo que entra a esta etapa.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L31)
+
+Conecta el resultado de esta etapa a la salida final.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L32)
+
+Propaga el acarreo resultante al cable de la siguiente etapa.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L33)
+
+Cierra la instanciación.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L34)
+
+Cierra el bucle for.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L35)
+
+Cierra el bloque de generación de hardware.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L36)
+
+El último acarreo generado por el bit más significativo se conecta a la salida general del módulo.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L39)
+
+Finaliza el módulo.
+👉 [Ver línea](https://github.com/digital-ECCI/lab02-arquitectura-g1-e5/blob/main/sumador_restador_4_bits.v#L41)
 
 ## Evidencias de implementación
 
@@ -89,7 +235,6 @@ Al interpretar el valor obtenido ($1100_2$) bajo la norma de complemento a 2, se
 * **Validación práctica del complemento a 2:** El desarrollo de este laboratorio permitió comprobar a nivel de hardware el fundamento matemático del complemento a 2. El diseño logró ejecutar de forma precisa operaciones de resta al transformarlas en sumas equivalentes mediante la lógica $A - B = A + (\sim B + 1)$. Se validó que el uso de la señal $Sel$ para invertir el sustraendo y simultáneamente inyectar un 1 en el acarreo inicial ($Cin$) es un enfoque robusto y funcional.
 * **Interpretación de resultados y signo:** Se verificó de forma concluyente que el acarreo de salida ($Co$) del último bloque sumador actúa eficazmente como indicador de estado para la operación. El diseño respondió adecuadamente a la teoría, confirmando que cuando $Co = 1$ en una resta, el resultado es positivo; mientras que si $Co = 0$, el circuito entrega correctamente un resultado negativo codificado en formato de complemento a 2.
 
-## Referencias
 
 **Formato IEEE:**
 * [1] digital-ECCI, "Arquitectura-de-procesadores - Laboratorio 2: Sumador/Restador", GitHub, Repositorio oficial del curso. [En línea]. Disponible en: https://github.com/digital-ECCI/Arquitectura-de-procesadores/blob/main/labs/02_lab02/README.md
