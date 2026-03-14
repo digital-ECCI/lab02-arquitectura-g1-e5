@@ -1,0 +1,39 @@
+**** module/scope: sumador_restador_tb
+     Flip-Flops   : 0
+     Logic Gates  : 64
+     MUX[2]: 32 slices
+     LOG[13]: 1 unaccounted
+     LOG[14]: 1 unaccounted
+**** module/scope: sumador_restador_tb.uut
+     Flip-Flops   : 0
+     Logic Gates  : 0
+**** module/scope: sumador_restador_tb.uut.etapa[0]
+     Flip-Flops   : 0
+     Logic Gates  : 1
+**** module/scope: sumador_restador_tb.uut.etapa[0].inst
+     Flip-Flops   : 0
+     Logic Gates  : 5
+**** module/scope: sumador_restador_tb.uut.etapa[1]
+     Flip-Flops   : 0
+     Logic Gates  : 1
+**** module/scope: sumador_restador_tb.uut.etapa[1].inst
+     Flip-Flops   : 0
+     Logic Gates  : 5
+**** module/scope: sumador_restador_tb.uut.etapa[2]
+     Flip-Flops   : 0
+     Logic Gates  : 1
+**** module/scope: sumador_restador_tb.uut.etapa[2].inst
+     Flip-Flops   : 0
+     Logic Gates  : 5
+**** module/scope: sumador_restador_tb.uut.etapa[3]
+     Flip-Flops   : 0
+     Logic Gates  : 1
+**** module/scope: sumador_restador_tb.uut.etapa[3].inst
+     Flip-Flops   : 0
+     Logic Gates  : 5
+**** TOTALS
+     Flip-Flops   : 0
+     Logic Gates  : 88
+     MUX[2]: 32 slices
+     LOG[13]: 1 unaccounted
+     LOG[14]: 1 unaccounted
